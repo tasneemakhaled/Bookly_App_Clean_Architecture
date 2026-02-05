@@ -1,7 +1,6 @@
-import 'package:bookly/Features/home/presentation/views/home_view.dart';
-import 'package:bookly/constants.dart';
-import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/assets.dart';
+
+import 'package:bookly_app_clean_architecture/core/utils/app_router.dart';
+import 'package:bookly_app_clean_architecture/core/utils/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'sliding_text.dart';
 
 class SplashViewbody extends StatefulWidget {
-  const SplashViewbody({Key? key}) : super(key: key);
+  const SplashViewbody({super.key});
 
   @override
   State<SplashViewbody> createState() => _SplashViewbodyState();
