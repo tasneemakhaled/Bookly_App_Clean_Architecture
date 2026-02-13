@@ -9,6 +9,7 @@ import 'package:bookly_app_clean_architecture/Features/home/presentation/manager
 import 'package:bookly_app_clean_architecture/constants.dart';
 import 'package:bookly_app_clean_architecture/core/utils/api_service.dart';
 import 'package:bookly_app_clean_architecture/core/utils/app_router.dart';
+import 'package:bookly_app_clean_architecture/core/utils/service_locator.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,20 +35,12 @@ class Bookly extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider( create: (context) => FeaturedBooksCubit(FetchFeaturedBooksUseCase(
-          homeRepo: HomeRepoImpl(
-            homeRemoteDataSource:
-             HomeRemoteDataSourceImpl(
-              apiService: ApiService(dio: Dio())), homeLocalDataSource: HomeLocalDataSourceimpl()),
-        ),
+          homeRepo: getIt.get<HomeRepoImpl>())
         ),
         ),
         BlocProvider( create: (context) => NewestBooksCubit(
           FetchNewestBooksUseCase(
-            homeRepo: HomeRepoImpl(
-              homeRemoteDataSource: HomeRemoteDataSourceImpl(
-                apiService: ApiService(
-                  dio: Dio())), 
-                  homeLocalDataSource: HomeLocalDataSourceimpl()),
+            homeRepo:getIt.get<HomeRepoImpl>(),
         ),
         ),
         ),
@@ -64,4 +57,4 @@ class Bookly extends StatelessWidget {
     );
   }
 }
-// dependency injection ==> get it package
+// dependency injection ==> get it package // create service as single tone one instance
