@@ -1,6 +1,7 @@
-import 'package:bookly_app_clean_architecture/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly_app_clean_architecture/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_clean_architecture/constants.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_ce_flutter/hive_ce_flutter.dart';
+
 
 abstract class HomeLocalDataSource { // from local data base cashing  data from api
  List<BookEntity> fetchFeaturedBooks();

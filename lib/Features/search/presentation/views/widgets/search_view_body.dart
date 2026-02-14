@@ -1,4 +1,4 @@
-import 'package:bookly_app_clean_architecture/Features/home/presentation/views/widgets/best_seller_list_view_item.dart';
+import 'package:bookly_app_clean_architecture/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookly_app_clean_architecture/core/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
 
-import 'package:bookly_app_clean_architecture/Features/home/presentation/views/widgets/book_details_view_body.dart';
+import 'package:bookly_app_clean_architecture/features/home/presentation/views/widgets/book_details_view_body.dart';
 import 'package:flutter/material.dart';
 
 

@@ -3,7 +3,7 @@
 // Check in to version control
 
 import 'package:hive_ce/hive_ce.dart';
-import 'package:bookly_app_clean_architecture/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly_app_clean_architecture/features/home/domain/entities/book_entity.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {

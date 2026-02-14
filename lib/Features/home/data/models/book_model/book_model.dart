@@ -1,4 +1,4 @@
-import 'package:bookly_app_clean_architecture/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly_app_clean_architecture/features/home/domain/entities/book_entity.dart';
 import 'package:equatable/equatable.dart';
 
 import 'access_info.dart';
