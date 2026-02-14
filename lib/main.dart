@@ -18,7 +18,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
   
-  // جرب تفتح الـ boxes، لو مفتوحة هيرمي exception وهنتجاهلها
+
   try {
     await Hive.openBox<BookEntity>(kFeaturedbox);
   } catch (e) {
