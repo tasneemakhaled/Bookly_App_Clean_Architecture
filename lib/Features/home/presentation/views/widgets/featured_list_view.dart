@@ -16,6 +16,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   late final ScrollController _scrollController;
   bool isLoading = false;
    var nextPage=1;
+   List<BookEntity>books=[];
   @override
   void initState() {
     super.initState();
@@ -47,20 +48,28 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
+    return BlocConsumer<FeaturedBooksCubit, FeaturedBooksState>(
+      listener: (context,state){
+if (state is FeaturedBooksSuccess){
+  books.addAll(state.books);
+}
+if(state is FeaturedBooksPaginationFailure){
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errMessage)));
+      }
+      },
       builder: (context, state) {
-        if (state is FeaturedBooksSuccess) {
+        if (state is FeaturedBooksSuccess ||state is FeaturedBooksPaginationLoading||state is FeaturedBooksPaginationFailure) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * .3,
             child: ListView.builder(
               controller: _scrollController, // Attach the controller here
-              itemCount: state.books.length,
+              itemCount: books.length ,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomBookImage(
-                    image: state.books[index].image ?? '',
+                    image: books[index].image ?? '',
                   ),
                 );
               },
