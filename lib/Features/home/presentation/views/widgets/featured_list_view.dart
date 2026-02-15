@@ -23,7 +23,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     _scrollController.addListener(_onScroll);
   }
 
-  void _onScroll() {
+  void _onScroll() async{
     // Calculate 70% of the total scrollable length
     double maxScroll = _scrollController.position.maxScrollExtent;
     double currentScroll = _scrollController.position.pixels;
@@ -31,7 +31,11 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     if (currentScroll >= maxScroll * 0.7) {
       // Trigger your request here (e.g., fetch more books)
       // Use a flag or check cubit state to prevent duplicate requests while scrolling
-      context.read<FeaturedBooksCubit>().fetchFeaturedBooks(pageNumber: nextPage++); 
+      if (!isLoading) {
+        isLoading=true;
+ await context.read<FeaturedBooksCubit>().fetchFeaturedBooks(pageNumber: nextPage++); 
+ isLoading=false;
+}
     }
   }
 
