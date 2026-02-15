@@ -1,5 +1,6 @@
 import 'package:bookly_app_clean_architecture/features/home/domain/entities/book_entity.dart';
 import 'package:bookly_app_clean_architecture/features/home/presentation/manager/cubit/featured_books_cubit.dart';
+import 'package:bookly_app_clean_architecture/features/home/presentation/views/widgets/featured_ooks_list_view_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'custom_book_item.dart';
@@ -78,7 +79,7 @@ if(state is FeaturedBooksPaginationFailure){
         } else if (state is FeaturedBooksFailure) {
           return Text(state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return FeaturedBooksListViewLoadingIndicator();
         }
       },
     );
