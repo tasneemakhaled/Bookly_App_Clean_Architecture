@@ -7,7 +7,7 @@ import 'package:bookly_app_clean_architecture/core/utils/functions/save_books.da
 
 
 abstract class HomeRemoteDataSource {  // from api   بحدد فيه اي اللي بيتعمله فيتش مش ازاي ولا يفرق معايا جه فشل ولا لا لاني مش هكتب بادي
- Future<List<BookEntity>>fetchFeaturedBooks();
+ Future<List<BookEntity>>fetchFeaturedBooks({int pageNumber=0});
   Future<List<BookEntity>> fetcNewestBooks();
 }
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource{
@@ -31,8 +31,8 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource{
     return books;
   }
   @override
-  Future<List<BookEntity>> fetchFeaturedBooks()async {
-  var data =await  apiService.get(endPoint: 'volumes?Filtering=free-ebooks&q="programming"');
+  Future<List<BookEntity>> fetchFeaturedBooks({int pageNumber=0})async {
+  var data =await  apiService.get(endPoint: 'volumes?Filtering=free-ebooks&q="programming"&startIndex=${pageNumber*10}');
  List<BookEntity> books = getBooksList(data);
  saveBooksData(books,kFeaturedbox);
   return books;
