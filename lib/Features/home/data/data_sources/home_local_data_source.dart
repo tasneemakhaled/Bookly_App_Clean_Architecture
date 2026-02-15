@@ -4,7 +4,7 @@ import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 
 
 abstract class HomeLocalDataSource { // from local data base cashing  data from api
- List<BookEntity> fetchFeaturedBooks();
+ List<BookEntity> fetchFeaturedBooks({int pageNumber=0});
  List<BookEntity> fetcNewestBooks();
 }
 class HomeLocalDataSourceimpl extends HomeLocalDataSource{
@@ -15,9 +15,15 @@ class HomeLocalDataSourceimpl extends HomeLocalDataSource{
   }
 
   @override
-  List<BookEntity> fetchFeaturedBooks() {
+  List<BookEntity> fetchFeaturedBooks({int pageNumber=0}) {
+    int startIndex=pageNumber*10;
+    int endIndex=(pageNumber+1)*10;
    var box=Hive.box<BookEntity>(kFeaturedbox);
-    return box.values.toList();
+int length=box.values.length;
+if(startIndex>=length|| endIndex>length) {
+return [];
+}
+  return box.values.toList().sublist(startIndex,endIndex);
   }
 
 }

@@ -7,7 +7,7 @@ import 'custom_book_item.dart';
 class FeaturedBooksListView extends StatefulWidget {
   const FeaturedBooksListView({super.key, required this.books});
   final List<BookEntity> books;
-
+  
   @override
   State<FeaturedBooksListView> createState() => _FeaturedBooksListViewState();
 }
@@ -15,7 +15,7 @@ class FeaturedBooksListView extends StatefulWidget {
 class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
   late final ScrollController _scrollController;
   bool isLoading = false;
-
+   var nextPage=1;
   @override
   void initState() {
     super.initState();
@@ -31,7 +31,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
     if (currentScroll >= maxScroll * 0.7) {
       // Trigger your request here (e.g., fetch more books)
       // Use a flag or check cubit state to prevent duplicate requests while scrolling
-      context.read<FeaturedBooksCubit>().fetchFeaturedBooks(); 
+      context.read<FeaturedBooksCubit>().fetchFeaturedBooks(pageNumber: nextPage++); 
     }
   }
 
